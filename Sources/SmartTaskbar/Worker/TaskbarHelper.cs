@@ -328,7 +328,10 @@ namespace SmartTaskbar
                     return TaskbarBehavior.DoNothing;
                 default:
                     info = new ForegroundWindowInfo(foregroundHandle, monitor, rect);
-                    return TaskbarBehavior.Hide;
+                    if (rect.top <= 0 && rect.left <= 0)
+                        return TaskbarBehavior.Hide;
+                    else
+                        return TaskbarBehavior.DoNothing;
             }
         }
 
